@@ -99,7 +99,7 @@ class NN:
         for p in patterns:
             a = p[1]
             b = self.update(p[0])
-            print(p[0], '->', self.update(p[0]))
+            print(p[1], '->', self.update(p[0]))
 
     def weights(self):
         print('Input weights:')
@@ -163,7 +163,7 @@ def irisdemo():
         pattern.append([ x, targetpattern])
 
     n = NN(4,9,2)
-    n.train(pattern,iterations=200,N=0.03,M=0.3)
+    n.train(pattern,iterations=1000,N=0.03,M=0.06)
     n.test(pattern)
 
 def demo():
