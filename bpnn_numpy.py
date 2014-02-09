@@ -148,19 +148,14 @@ def irisdemo():
     pattern = []
 
     data_norm = normalize(iris.data)
+    # Classify 3 different iris types with two tanh output nodes:
+    # Encode class 0 as [0,0]
+    # Encode class 1 as [1,0]
+    # Encode class 2 as [0,1]
+    amap = {0:[0.,0.], 1:[1.,0.], 2:[0.,1.]}
 
     for i,x in enumerate(data_norm):
-        # Classify 3 different iris types with two tanh output nodes:
-        # Encode class 0 as [0,0]
-        # Encode class 1 as [1,0]
-        # Encode class 2 as [0,1]
-        targetpattern = [0.,0.]
-        if iris.target[i] == 1:
-            targetpattern = [1.,0.]
-        elif iris.target[i] == 2:
-            targetpattern = [0.,1.]
-
-        pattern.append([ x, targetpattern])
+        pattern.append([ x, amap[iris.target[i]] ])
 
     n = NN(4,9,2)
     n.train(pattern,iterations=1000,N=0.03,M=0.06)
