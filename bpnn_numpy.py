@@ -152,10 +152,10 @@ def irisdemo():
     # Encode class 0 as [0,0]
     # Encode class 1 as [1,0]
     # Encode class 2 as [0,1]
-    amap = {0:[0.,0.], 1:[1.,0.], 2:[0.,1.]}
+    encode = {0:[0.,0.], 1:[1.,0.], 2:[0.,1.]}
 
     for i,x in enumerate(data_norm):
-        pattern.append([ x, amap[iris.target[i]] ])
+        pattern.append([ x, encode[iris.target[i]] ])
 
     n = NN(4,9,2)
     n.train(pattern,iterations=1000,N=0.03,M=0.06)
